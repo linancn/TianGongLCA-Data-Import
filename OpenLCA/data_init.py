@@ -71,7 +71,7 @@ if os.path.exists(actors):
     df.drop(["@context", "@type"], axis=1, inplace=True)
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
-    df.to_sql(datasource + "_actors", con=db_conn, if_exists="append", index=False)
+    df.to_sql(datasource + "__actors", con=db_conn, if_exists="append", index=False)
 
 categories = "OpenLCA/data/" + datasource + "/categories"
 if os.path.exists(categories):
@@ -81,7 +81,7 @@ if os.path.exists(categories):
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
     df.to_sql(
-        datasource + "_categories", con=db_conn, if_exists="append", index=False
+        datasource + "__categories", con=db_conn, if_exists="append", index=False
     )
 
 currencies = "OpenLCA/data/" + datasource + "/currencies"
@@ -94,7 +94,7 @@ if os.path.exists(currencies):
     if "referenceCurrency.@type" in df.columns:
         df.drop(["referenceCurrency.@type"], axis=1, inplace=True)
     df.to_sql(
-        datasource + "_currencies", con=db_conn, if_exists="append", index=False
+        datasource + "__currencies", con=db_conn, if_exists="append", index=False
     )
 
 dq_systems = "OpenLCA/data/" + datasource + "/dq_systems"
@@ -108,7 +108,7 @@ if os.path.exists(dq_systems):
         df.drop(["source.@type"], axis=1, inplace=True)
     df["indicators"] = list(map(lambda x: json.dumps(x), df["indicators"]))
     df.to_sql(
-        datasource + "_dq_systems",
+        datasource + "__dq_systems",
         con=db_conn,
         if_exists="append",
         index=None,
@@ -125,7 +125,7 @@ if os.path.exists(flow_properties):
     if "unitGroup.@type" in df.columns:
         df.drop(["unitGroup.@type"], axis=1, inplace=True)
     df.to_sql(
-        datasource + "_flow_properties", con=db_conn, if_exists="append", index=None
+        datasource + "__flow_properties", con=db_conn, if_exists="append", index=None
     )
 
 flows = "OpenLCA/data/" + datasource + "/flows"
@@ -144,7 +144,7 @@ if os.path.exists(flows):
             map(lambda x: json.dumps(x), df["flowProperties"])
         )
         df.to_sql(
-            datasource + "_flows",
+            datasource + "__flows",
             con=db_conn,
             if_exists="append",
             index=None,
@@ -161,7 +161,7 @@ if os.path.exists(locations):
             map(lambda x: json.dumps(x), df["geometry.geometries"])
         )
     df.to_sql(
-        datasource + "_locations",
+        datasource + "__locations",
         con=db_conn,
         if_exists="append",
         index=None,
@@ -223,7 +223,7 @@ if os.path.exists(processes):
                 columns={"dqSystem.name": "exchangeDqSystem.name"}, inplace=True
             )
         df.to_sql(
-            datasource + "_processes",
+            datasource + "__processes",
             con=db_conn,
             if_exists="append",
             index=None,
@@ -242,7 +242,7 @@ if os.path.exists(sources):
     df.drop(["@context", "@type"], axis=1, inplace=True)
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
-    df.to_sql(datasource + "_sources", con=db_conn, if_exists="append", index=None)
+    df.to_sql(datasource + "__sources", con=db_conn, if_exists="append", index=None)
 
 unit_groups = "OpenLCA/data/" + datasource + "/unit_groups"
 if os.path.exists(unit_groups):
@@ -255,7 +255,7 @@ if os.path.exists(unit_groups):
     if "defaultFlowProperty.@type" in df.columns:
         df.drop(["defaultFlowProperty.@type"], axis=1, inplace=True)
     df.to_sql(
-        datasource + "_unit_groups",
+        datasource + "__unit_groups",
         con=db_conn,
         if_exists="append",
         index=None,
@@ -275,7 +275,7 @@ if os.path.exists(lcia_categories):
             )
         df.drop(["@context", "@type"], axis=1, inplace=True)
         df.to_sql(
-            datasource + "_lcia_categories",
+            datasource + "__lcia_categories",
             con=db_conn,
             if_exists="append",
             index=None,
@@ -296,7 +296,7 @@ if os.path.exists(lcia_methods):
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
     df.to_sql(
-        datasource + "_lcia_methods",
+        datasource + "__lcia_methods",
         con=db_conn,
         if_exists="append",
         index=None,
@@ -314,7 +314,7 @@ if os.path.exists(nw_sets):
         df["factors"] = list(map(lambda x: json.dumps(x), df["factors"]))
     df.drop(["@context", "@type"], axis=1, inplace=True)
     df.to_sql(
-        datasource + "_nw_sets",
+        datasource + "__nw_sets",
         con=db_conn,
         if_exists="append",
         index=None,
@@ -327,7 +327,7 @@ if os.path.exists(parameters):
     print(datasource + " parameters")
     df = mergeJson(parameters)
     df.drop(["@context", "@type"], axis=1, inplace=True)
-    df.to_sql(datasource + "_parameters", con=db_conn, if_exists="append", index=None)
+    df.to_sql(datasource + "__parameters", con=db_conn, if_exists="append", index=None)
 
 bin = "OpenLCA/data/" + datasource + "/bin/sources"
 if os.path.exists(bin):
@@ -342,7 +342,7 @@ if os.path.exists(bin):
                             [[d1, bfile.read()]], columns=["@id", "bin_sources"]
                         )
                         df.to_sql(
-                            datasource + "_bin_sources",
+                            datasource + "__bin_sources",
                             con=db_conn,
                             if_exists="append",
                             index=None,
