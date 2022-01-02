@@ -2,7 +2,7 @@ import psycopg2
 import pandas as pd
 
 conn = psycopg2.connect(
-    database="crystalca",
+    database="crystalcaData",
     user="postgres",
     password="1234qwer",
     host="localhost",
@@ -10,7 +10,7 @@ conn = psycopg2.connect(
 )
 
 curs = conn.cursor()
-sql = "select relname as TableName, reltuples as RowCounts from pg_class where relkind='r' and (relname not like '%%sql%%' and relname not like '%%pg%%')  order by TableName"
+sql = "select relname as TableName, reltuples as RowCounts from pg_class where relkind='r' and (relname not like '%%sql%%' and relname not like '%%pg%%')  order by TableName;"
 curs.execute(sql)
 data = curs.fetchall()
 
