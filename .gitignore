@@ -131,5 +131,5 @@ dmypy.json
 # Data
 USLCI/data/*
 OpenLCA/data/*
-ecocosts/data/*
+ecocosts_idemat/data/*
 .vscode/launch.json

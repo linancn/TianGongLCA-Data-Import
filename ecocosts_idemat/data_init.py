@@ -121,7 +121,7 @@ db_conn = create_engine(
     encoding="utf8",
 )
 
-actors = "ecocosts/data/actors"
+actors = "ecocosts_idemat/data/actors"
 if os.path.exists(actors):
     print("actors")
     df = mergeJson(actors)
@@ -129,9 +129,9 @@ if os.path.exists(actors):
     df.drop(["@context", "@type"], axis=1, inplace=True)
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
-    df.to_sql("ecocosts__actors", con=db_conn, if_exists="append", index=False)
+    df.to_sql("ecocosts_idemat__actors", con=db_conn, if_exists="append", index=False)
 
-categories = "ecocosts/data/categories"
+categories = "ecocosts_idemat/data/categories"
 if os.path.exists(categories):
     print("categories")
     df = mergeJson(categories)
@@ -139,9 +139,9 @@ if os.path.exists(categories):
     df.drop(["@context", "@type"], axis=1, inplace=True)
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
-    df.to_sql("ecocosts__categories", con=db_conn, if_exists="append", index=False)
+    df.to_sql("ecocosts_idemat__categories", con=db_conn, if_exists="append", index=False)
 
-currencies = "ecocosts/data/currencies"
+currencies = "ecocosts_idemat/data/currencies"
 if os.path.exists(currencies):
     print("currencies")
     df = mergeJson(currencies)
@@ -151,9 +151,9 @@ if os.path.exists(currencies):
         df.drop(["category.@type"], axis=1, inplace=True)
     if "referenceCurrency.@type" in df.columns:
         df.drop(["referenceCurrency.@type"], axis=1, inplace=True)
-    df.to_sql("ecocosts__currencies", con=db_conn, if_exists="append", index=False)
+    df.to_sql("ecocosts_idemat__currencies", con=db_conn, if_exists="append", index=False)
 
-dq_systems = "ecocosts/data/dq_systems"
+dq_systems = "ecocosts_idemat/data/dq_systems"
 if os.path.exists(dq_systems):
     print("dq_systems")
     df = mergeJson(dq_systems)
@@ -165,14 +165,14 @@ if os.path.exists(dq_systems):
         df.drop(["source.@type"], axis=1, inplace=True)
     df["indicators"] = list(map(lambda x: json.dumps(x), df["indicators"]))
     df.to_sql(
-        "ecocosts__dq_systems",
+        "ecocosts_idemat__dq_systems",
         con=db_conn,
         if_exists="append",
         index=None,
         dtype={"indicators": sqlalchemy.types.JSON},
     )
 
-flow_properties = "ecocosts/data/flow_properties"
+flow_properties = "ecocosts_idemat/data/flow_properties"
 if os.path.exists(flow_properties):
     print("flow_properties")
     df = mergeJson(flow_properties)
@@ -182,9 +182,9 @@ if os.path.exists(flow_properties):
         df.drop(["category.@type"], axis=1, inplace=True)
     if "unitGroup.@type" in df.columns:
         df.drop(["unitGroup.@type"], axis=1, inplace=True)
-    df.to_sql("ecocosts__flow_properties", con=db_conn, if_exists="append", index=None)
+    df.to_sql("ecocosts_idemat__flow_properties", con=db_conn, if_exists="append", index=None)
 
-flows = "ecocosts/data/flows"
+flows = "ecocosts_idemat/data/flows"
 if os.path.exists(flows):
     print("flows")
     filelist = list(findAllFile(flows))
@@ -199,14 +199,14 @@ if os.path.exists(flows):
             df.drop(["location.@type"], axis=1, inplace=True)
         df["flowProperties"] = list(map(lambda x: json.dumps(x), df["flowProperties"]))
         df.to_sql(
-            "ecocosts__flows",
+            "ecocosts_idemat__flows",
             con=db_conn,
             if_exists="append",
             index=None,
             dtype={"flowProperties": sqlalchemy.types.JSON},
         )
 
-locations = "ecocosts/data/locations"
+locations = "ecocosts_idemat/data/locations"
 if os.path.exists(locations):
     print("locations")
     df = mergeJson(locations)
@@ -217,14 +217,14 @@ if os.path.exists(locations):
             map(lambda x: json.dumps(x), df["geometryGeometries"])
         )
     df.to_sql(
-        "ecocosts__locations",
+        "ecocosts_idemat__locations",
         con=db_conn,
         if_exists="append",
         index=None,
         dtype={"geometryGeometries": sqlalchemy.types.JSON},
     )
 
-processes = "ecocosts/data/processes"
+processes = "ecocosts_idemat/data/processes"
 if os.path.exists(processes):
     print("processes")
     filelist = list(findAllFile(processes))
@@ -272,7 +272,7 @@ if os.path.exists(processes):
         if "dqSystem.@type" in df.columns:
             df.drop(["dqSystem.@type"], axis=1, inplace=True)
         df.to_sql(
-            "ecocosts__processes",
+            "ecocosts_idemat__processes",
             con=db_conn,
             if_exists="append",
             index=None,
@@ -284,7 +284,7 @@ if os.path.exists(processes):
             },
         )
 
-sources = "ecocosts/data/sources"
+sources = "ecocosts_idemat/data/sources"
 if os.path.exists(sources):
     print("sources")
     df = mergeJson(sources)
@@ -292,9 +292,9 @@ if os.path.exists(sources):
     df.drop(["@context", "@type"], axis=1, inplace=True)
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
-    df.to_sql("ecocosts__sources", con=db_conn, if_exists="append", index=None)
+    df.to_sql("ecocosts_idemat__sources", con=db_conn, if_exists="append", index=None)
 
-unit_groups = "ecocosts/data/unit_groups"
+unit_groups = "ecocosts_idemat/data/unit_groups"
 if os.path.exists(unit_groups):
     print("unit_groups")
     df = mergeJson(unit_groups)
@@ -306,14 +306,14 @@ if os.path.exists(unit_groups):
     if "defaultFlowProperty.@type" in df.columns:
         df.drop(["defaultFlowProperty.@type"], axis=1, inplace=True)
     df.to_sql(
-        "ecocosts__unit_groups",
+        "ecocosts_idemat__unit_groups",
         con=db_conn,
         if_exists="append",
         index=None,
         dtype={"units": sqlalchemy.types.JSON},
     )
 
-lcia_categories = "ecocosts/data/lcia_categories"
+lcia_categories = "ecocosts_idemat/data/lcia_categories"
 if os.path.exists(lcia_categories):
     print("lcia_categories")
     filelist = list(findAllFile(lcia_categories))
@@ -327,14 +327,14 @@ if os.path.exists(lcia_categories):
             )
         df.drop(["@context", "@type"], axis=1, inplace=True)
         df.to_sql(
-            "ecocosts__lcia_categories",
+            "ecocosts_idemat__lcia_categories",
             con=db_conn,
             if_exists="append",
             index=None,
             dtype={"impactFactors": sqlalchemy.types.JSON},
         )
 
-lcia_methods = "ecocosts/data/lcia_methods"
+lcia_methods = "ecocosts_idemat/data/lcia_methods"
 if os.path.exists(lcia_methods):
     print("lcia_methods")
     df = mergeJson(lcia_methods)
@@ -349,7 +349,7 @@ if os.path.exists(lcia_methods):
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
     df.to_sql(
-        "ecocosts__lcia_methods",
+        "ecocosts_idemat__lcia_methods",
         con=db_conn,
         if_exists="append",
         index=None,
@@ -359,7 +359,7 @@ if os.path.exists(lcia_methods):
         },
     )
 
-nw_sets = "ecocosts/data/nw_sets"
+nw_sets = "ecocosts_idemat/data/nw_sets"
 if os.path.exists(nw_sets):
     print("nw_sets")
     df = mergeJson(nw_sets)
@@ -368,23 +368,23 @@ if os.path.exists(nw_sets):
         df["factors"] = list(map(lambda x: json.dumps(x), df["factors"]))
     df.drop(["@context", "@type"], axis=1, inplace=True)
     df.to_sql(
-        "ecocosts__nw_sets",
+        "ecocosts_idemat__nw_sets",
         con=db_conn,
         if_exists="append",
         index=None,
         dtype={"factors": sqlalchemy.types.JSON},
     )
 
-parameters = "ecocosts/data/parameters"
+parameters = "ecocosts_idemat/data/parameters"
 print("parameters")
 if os.path.exists(parameters):
     print("parameters")
     df = mergeJson(parameters)
     df = columnRename(df)
     df.drop(["@context", "@type"], axis=1, inplace=True)
-    df.to_sql("ecocosts__parameters", con=db_conn, if_exists="append", index=None)
+    df.to_sql("ecocosts_idemat__parameters", con=db_conn, if_exists="append", index=None)
 
-bin = "ecocosts/data/bin/sources"
+bin = "ecocosts_idemat/data/bin/sources"
 if os.path.exists(bin):
     print("bin_sources")
     for root1, ds1, fs1 in os.walk(bin):
@@ -397,7 +397,7 @@ if os.path.exists(bin):
                             [[d1, bfile.read()]], columns=["id", "binSources"]
                         )
                         df.to_sql(
-                            "ecocosts__bin_sources",
+                            "ecocosts_idemat__bin_sources",
                             con=db_conn,
                             if_exists="append",
                             index=None,
