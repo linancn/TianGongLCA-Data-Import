@@ -45,71 +45,97 @@ def mergeJson_list(base):
 def columnRename(base):
     base.rename(
         columns={
+            "name": "data_name",
+            "lastChange": "last_change",
+            "zipCode": "zip_code",
             "@id": "id",
-            "category.@id": "categoryId",
-            "category.name": "categoryName",
-            "category.categoryPath": "categoryPath",
-            "category.categoryType": "categoryType",
-            "unitGroup.@id": "unitGroupId",
-            "unitGroup.name": "unitGroupName",
-            "unitGroup.categoryPath": "unitGroupCategoryPath",
-            "location.@id": "locationId",
-            "location.name": "locationName",
-            "geometry.type": "geometryType",
-            "geometry.geometries": "geometryGeometries",
-            "geometry.coordinates": "geometryCoordinates",
-            "parameter1_value": "parameter1Value",
-            "parameter1_formula": "parameter1Formula",
-            "parameter2_value": "parameter2Value",
-            "parameter2_formula": "parameter2Formula",
-            "parameter3_value": "parameter3Value",
-            "parameter3_formula": "parameter3Formula",
-            "processDocumentation.timeDescription": "processDocumentationTimeDescription",
-            "processDocumentation.technologyDescription": "processDocumentationTechnologyDescription",
-            "processDocumentation.completenessDescription": "processDocumentationCompletenessDescription",
-            "processDocumentation.dataSelectionDescription": "processDocumentationDataSelectionDescription",
-            "processDocumentation.inventoryMethodDescription": "processDocumentationInventoryMethodDescription",
-            "processDocumentation.copyright": "processDocumentationCopyright",
-            "processDocumentation.creationDate": "processDocumentationCreationDate",
-            "processDocumentation.projectDescription": "processDocumentationProjectDescription",
-            "processDocumentation.geographyDescription": "processDocumentationGeographyDescription",
-            "processDocumentation.reviewDetails": "processDocumentationReviewDetails",
-            "processDocumentation.dataTreatmentDescription": "processDocumentationDataTreatmentDescription",
-            "processDocumentation.samplingDescription": "processDocumentationSamplingDescription",
-            "processDocumentation.sources": "processDocumentationSources",
-            "processDocumentation.validFrom": "processDocumentationValidFrom",
-            "processDocumentation.validUntil": "processDocumentationValidUntil",
-            "processDocumentation.dataDocumentor.@id": "processDocumentationDataDocumentorId",
-            "processDocumentation.dataDocumentor.name": "processDocumentationDataDocumentorName",
-            "processDocumentation.dataGenerator.@id": "processDocumentationDataGeneratorId",
-            "processDocumentation.dataGenerator.name": "processDocumentationDataGeneratorName",
-            "processDocumentation.dataGenerator.categoryPath": "processDocumentationDataGeneratorCategoryPath",
-            "processDocumentation.modelingConstantsDescription": "processDocumentationModelingConstantsDescription",
-            "processDocumentation.intendedApplication": "processDocumentationIntendedApplication",
-            "processDocumentation.restrictionsDescription": "processDocumentationRestrictionsDescription",
-            "processDocumentation.dataSetOwner.@id": "processDocumentationDataSetOwnerId",
-            "processDocumentation.dataSetOwner.name": "processDocumentationDataSetOwnerName",
-            "processDocumentation.dataSetOwner.categoryPath": "processDocumentationDataSetOwnerCategoryPath",
-            "processDocumentation.dataCollectionDescription": "processDocumentationDataCollectionDescription",
-            "processDocumentation.reviewer.@id": "processDocumentationReviewerId",
-            "processDocumentation.reviewer.name": "processDocumentationReviewerName",
-            "processDocumentation.reviewer.categoryPath": "processDocumentationReviewerCategoryPath",
-            "processDocumentation.dataDocumentor.categoryPath": "processDocumentationDataDocumentorCategoryPath",
-            "processDocumentation.publication.@id": "processDocumentationPublicationId",
-            "processDocumentation.publication.name": "processDocumentationPublicationName",
-            "processDocumentation.publication.categoryPath": "processDocumentationPublicationCategoryPath",
-            "exchangeDqSystem.@id": "exchangeDqSystemId",
-            "exchangeDqSystem.name": "exchangeDqSystemName",
-            "dqSystem.@id": "exchangeDqSystemId",
-            "dqSystem.name": "exchangeDqSystemName",
-            "defaultFlowProperty.@id": "defaultFlowPropertyId",
-            "defaultFlowProperty.name": "defaultFlowPropertyName",
-            "defaultFlowProperty.categoryPath": "defaultFlowPropertyCategoryPath",
-            "source.@id": "sourceId",
-            "source.name": "sourceName",
-            "bin_sources": "binSources",
-            "referenceCurrency.@id": "referenceCurrencyId",
-            "referenceCurrency.name": "referenceCurrencyName",
+            "category.@id": "category_id",
+            "category.name": "category_name",
+            "category.categoryPath": "category_path",
+            "category.categoryType": "category_type",
+            "flowPropertyType": "flow_property_type",
+            "modelType": "model_type",
+            "unitGroup.@id": "unit_group_id",
+            "unitGroup.name": "unit_group_name",
+            "unitGroup.categoryPath": "unit_group_category_path",
+            "infrastructureFlow": "infrastructure_flow",
+            "flowType": "flow_type",
+            "flowProperties": "flow_properties",
+            "location.@id": "location_id",
+            "location.name": "location_name",
+            "referenceUnitName": "reference_unit_name",
+            "impactFactors": "impact_factors",
+            "impactCategories": "impact_categories",
+            "nwSets": "nw_sets",
+            "geometry.type": "geometry_type",
+            "geometry.geometries": "geometry_geometries",
+            "geometry.coordinates": "geometry_coordinates",
+            "weightedScoreUnit": "weighted_score_unit",
+            "parameter1_value": "parameter1_value",
+            "parameter1_formula": "parameter1_formula",
+            "parameter2_value": "parameter2_value",
+            "parameter2_formula": "parameter2_formula",
+            "parameter3_value": "parameter3_value",
+            "parameter3_formula": "parameter3_formula",
+            "inputParameter": "input_parameter",
+            "parameterScope": "parameter_scope",
+            "distributionType": "distribution_type",
+            "processType": "process_type",
+            "defaultAllocationMethod": "default_allocation_method",
+            "infrastructureProcess": "infrastructure_process",
+            "dqEntry": "dq_entry",
+            "lastInternalId": "last_internal_id",
+            "allocationFactors": "allocation_factors",
+            "processDocumentation.timeDescription": "process_documentation_time_description",
+            "processDocumentation.technologyDescription": "process_documentation_technology_description",
+            "processDocumentation.completenessDescription": "process_documentation_completeness_description",
+            "processDocumentation.dataSelectionDescription": "process_documentation_data_selection_description",
+            "processDocumentation.inventoryMethodDescription": "process_documentation_inventory_method_description",
+            "processDocumentation.copyright": "process_documentation_copyright",
+            "processDocumentation.creationDate": "process_documentation_creation_date",
+            "processDocumentation.projectDescription": "process_documentation_project_description",
+            "processDocumentation.geographyDescription": "process_documentation_geography_description",
+            "processDocumentation.reviewDetails": "process_documentation_review_details",
+            "processDocumentation.dataTreatmentDescription": "process_documentation_data_treatment_description",
+            "processDocumentation.samplingDescription": "process_documentation_sampling_description",
+            "processDocumentation.sources": "process_documentation_sources",
+            "processDocumentation.validFrom": "process_documentation_valid_from",
+            "processDocumentation.validUntil": "process_documentation_valid_until",
+            "processDocumentation.dataDocumentor.@id": "process_documentation_data_documentor_id",
+            "processDocumentation.dataDocumentor.name": "process_documentation_data_documentor_name",
+            "processDocumentation.dataGenerator.@id": "process_documentation_data_generator_id",
+            "processDocumentation.dataGenerator.name": "process_documentation_data_generator_name",
+            "processDocumentation.dataGenerator.categoryPath": "process_documentation_data_generator_category_path",
+            "processDocumentation.modelingConstantsDescription": "process_documentation_modeling_constants_description",
+            "processDocumentation.intendedApplication": "process_documentation_intended_application",
+            "processDocumentation.restrictionsDescription": "process_documentation_restrictions_description",
+            "processDocumentation.dataSetOwner.@id": "process_documentation_data_set_owner_id",
+            "processDocumentation.dataSetOwner.name": "process_documentation_data_set_owner_name",
+            "processDocumentation.dataSetOwner.categoryPath": "process_documentation_data_set_owner_category_path",
+            "processDocumentation.dataCollectionDescription": "process_documentation_data_collection_description",
+            "processDocumentation.reviewer.@id": "process_documentation_reviewer_id",
+            "processDocumentation.reviewer.name": "process_documentation_reviewer_name",
+            "processDocumentation.reviewer.categoryPath": "process_documentation_reviewer_category_path",
+            "processDocumentation.dataDocumentor.categoryPath": "process_documentation_data_documentor_category_path",
+            "processDocumentation.publication.@id": "process_documentation_publication_id",
+            "processDocumentation.publication.name": "process_documentation_publication_name",
+            "processDocumentation.publication.categoryPath": "process_documentation_publication_category_path",
+            "exchangeDqSystem.@id": "exchange_dq_system_id",
+            "exchangeDqSystem.name": "exchange_dq_system_name",
+            "dqSystem.@id": "exchange_dq_system_id",
+            "dqSystem.name": "exchange_dq_system_name",
+            "textReference": "text_reference",
+            "externalFile": "external_file",
+            "defaultFlowProperty.@id": "default_flow_property_id",
+            "defaultFlowProperty.name": "default_flow_property_name",
+            "defaultFlowProperty.categoryPath": "default_flow_property_category_path",
+            "hasUncertainties": "has_uncertainties",
+            "source.@id": "source_id",
+            "source.name": "source_name",
+            "binSources": "bin_sources",
+            "conversionFactor": "conversion_factor",
+            "referenceCurrency.@id": "reference_currency_id",
+            "referenceCurrency.name": "reference_currency_name",
         },
         inplace=true,
     )
@@ -117,7 +143,9 @@ def columnRename(base):
 
 
 db_conn = create_engine(
-    "postgresql+psycopg2://postgres:1234qwer@localhost:5432/crystalcaData", encoding="utf8"
+    "postgresql+psycopg2://postgres:1234qwer@localhost:5432/crystalcaData",
+    encoding="utf8",
+    pool_pre_ping=True,
 )
 
 openlca_data = os.listdir("OpenLCA/data")
@@ -125,18 +153,19 @@ openlca_data = os.listdir("OpenLCA/data")
 # toggle of datasets
 # 0: agribalyse
 # 1: bioenergie
-# 2: ecoinvent_lcia
-# 3: ef
-# 4: elcd
-# 5: exiobase
-# 6: needs
-# 7: openlca_impact_world_plus
-# 8: openlca_lcia
-# 9: ozlci
-# 10: usda
-# 11: uslci
-# 12: worldsteel
-datasource = openlca_data[0]
+# 2：ecocosts_idemat
+# 3: ecoinvent_lcia
+# 4: ef
+# 5: elcd
+# 6: exiobase
+# 7: needs
+# 8: openlca_impact_world_plus
+# 9: openlca_lcia
+# 10: ozlci
+# 11: usda
+# 12: uslci
+# 13: worldsteel
+datasource = openlca_data[13]
 
 actors = "OpenLCA/data/" + datasource + "/actors"
 if os.path.exists(actors):
@@ -146,7 +175,17 @@ if os.path.exists(actors):
     df.drop(["@context", "@type"], axis=1, inplace=True)
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
-    df.to_sql(datasource + "__actors", con=db_conn, if_exists="append", index=False)
+    if "category_path" in df.columns:
+        df["category_path"] = list(
+            map(lambda x: json.dumps(x), df["category_path"])
+        )
+    df.to_sql(
+        datasource + "__actors",
+        con=db_conn,
+        if_exists="append",
+        index=False,
+        dtype={"category_path": sqlalchemy.types.JSON},
+    )
 
 categories = "OpenLCA/data/" + datasource + "/categories"
 if os.path.exists(categories):
@@ -156,7 +195,17 @@ if os.path.exists(categories):
     df.drop(["@context", "@type"], axis=1, inplace=True)
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
-    df.to_sql(datasource + "__categories", con=db_conn, if_exists="append", index=False)
+    if "category_path" in df.columns:
+        df["category_path"] = list(
+            map(lambda x: json.dumps(x), df["category_path"])
+        )
+    df.to_sql(
+        datasource + "__categories",
+        con=db_conn,
+        if_exists="append",
+        index=False,
+        dtype={"category_path": sqlalchemy.types.JSON},
+    )
 
 currencies = "OpenLCA/data/" + datasource + "/currencies"
 if os.path.exists(currencies):
@@ -168,7 +217,9 @@ if os.path.exists(currencies):
         df.drop(["category.@type"], axis=1, inplace=True)
     if "referenceCurrency.@type" in df.columns:
         df.drop(["referenceCurrency.@type"], axis=1, inplace=True)
-    df.to_sql(datasource + "__currencies", con=db_conn, if_exists="append", index=False)
+    df.to_sql(
+        datasource + "__currencies", con=db_conn, if_exists="append", index=False
+    )
 
 dq_systems = "OpenLCA/data/" + datasource + "/dq_systems"
 if os.path.exists(dq_systems):
@@ -199,8 +250,23 @@ if os.path.exists(flow_properties):
         df.drop(["category.@type"], axis=1, inplace=True)
     if "unitGroup.@type" in df.columns:
         df.drop(["unitGroup.@type"], axis=1, inplace=True)
+    if "category_path" in df.columns:
+        df["category_path"] = list(
+            map(lambda x: json.dumps(x), df["category_path"])
+        )
+    if "unit_group_category_path" in df.columns:
+        df["unit_group_category_path"] = list(
+            map(lambda x: json.dumps(x), df["unit_group_category_path"])
+        )
     df.to_sql(
-        datasource + "__flow_properties", con=db_conn, if_exists="append", index=None
+        datasource + "__flow_properties",
+        con=db_conn,
+        if_exists="append",
+        index=None,
+        dtype={
+            "category_path": sqlalchemy.types.JSON,
+            "unit_group_category_path": sqlalchemy.types.JSON,
+        },
     )
 
 flows = "OpenLCA/data/" + datasource + "/flows"
@@ -216,13 +282,23 @@ if os.path.exists(flows):
             df.drop(["category.@type"], axis=1, inplace=True)
         if "location.@type" in df.columns:
             df.drop(["location.@type"], axis=1, inplace=True)
-        df["flowProperties"] = list(map(lambda x: json.dumps(x), df["flowProperties"]))
+        if "category_path" in df.columns:
+            df["category_path"] = list(
+                map(lambda x: json.dumps(x), df["category_path"])
+            )
+        if "flow_properties" in df.columns:
+            df["flow_properties"] = list(
+                map(lambda x: json.dumps(x), df["flow_properties"])
+            )
         df.to_sql(
             datasource + "__flows",
             con=db_conn,
             if_exists="append",
             index=None,
-            dtype={"flowProperties": sqlalchemy.types.JSON},
+            dtype={
+                "flow_properties": sqlalchemy.types.JSON,
+                "category_path": sqlalchemy.types.JSON,
+            },
         )
 
 locations = "OpenLCA/data/" + datasource + "/locations"
@@ -231,16 +307,23 @@ if os.path.exists(locations):
     df = mergeJson(locations)
     df = columnRename(df)
     df.drop(["@context", "@type"], axis=1, inplace=True)
-    if "geometryGeometries" in df.columns:
-        df["geometryGeometries"] = list(
-            map(lambda x: json.dumps(x), df["geometryGeometries"])
+    if "geometry_geometries" in df.columns:
+        df["geometry_geometries"] = list(
+            map(lambda x: json.dumps(x), df["geometry_geometries"])
+        )
+    if "geometry_coordinates" in df.columns:
+        df["geometry_coordinates"] = list(
+            map(lambda x: json.dumps(x), df["geometry_coordinates"])
         )
     df.to_sql(
         datasource + "__locations",
         con=db_conn,
         if_exists="append",
         index=None,
-        dtype={"geometryGeometries": sqlalchemy.types.JSON},
+        dtype={
+            "geometry_geometries": sqlalchemy.types.JSON,
+            "geometry_coordinates": sqlalchemy.types.JSON,
+        },
     )
 
 processes = "OpenLCA/data/" + datasource + "/processes"
@@ -260,15 +343,54 @@ if os.path.exists(processes):
             df.drop(["location.@type"], axis=1, inplace=True)
         if "exchanges" in df.columns:
             df["exchanges"] = list(map(lambda x: json.dumps(x), df["exchanges"]))
-        if "allocationFactors" in df.columns:
-            df["allocationFactors"] = list(
-                map(lambda x: json.dumps(x), df["allocationFactors"])
+        if "allocation_factors" in df.columns:
+            df["allocation_factors"] = list(
+                map(lambda x: json.dumps(x), df["allocation_factors"])
+            )
+        if "category_path" in df.columns:
+            df["category_path"] = list(
+                map(lambda x: json.dumps(x), df["category_path"])
             )
         if "parameters" in df.columns:
             df["parameters"] = list(map(lambda x: json.dumps(x), df["parameters"]))
-        if "processDocumentation.sources" in df.columns:
-            df["processDocumentation.sources"] = list(
-                map(lambda x: json.dumps(x), df["processDocumentation.sources"])
+        if "process_documentation_sources" in df.columns:
+            df["process_documentation_sources"] = list(
+                map(lambda x: json.dumps(x), df["process_documentation_sources"])
+            )
+        if "process_documentation_data_generator_category_path" in df.columns:
+            df["process_documentation_data_generator_category_path"] = list(
+                map(
+                    lambda x: json.dumps(x),
+                    df["process_documentation_data_generator_category_path"],
+                )
+            )
+        if "process_documentation_data_set_owner_category_path" in df.columns:
+            df["process_documentation_data_set_owner_category_path"] = list(
+                map(
+                    lambda x: json.dumps(x),
+                    df["process_documentation_data_set_owner_category_path"],
+                )
+            )
+        if "process_documentation_reviewer_category_path" in df.columns:
+            df["process_documentation_reviewer_category_path"] = list(
+                map(
+                    lambda x: json.dumps(x),
+                    df["process_documentation_reviewer_category_path"],
+                )
+            )
+        if "process_documentation_data_documentor_category_path" in df.columns:
+            df["process_documentation_data_documentor_category_path"] = list(
+                map(
+                    lambda x: json.dumps(x),
+                    df["process_documentation_data_documentor_category_path"],
+                )
+            )
+        if "process_documentation_publication_category_path" in df.columns:
+            df["process_documentation_publication_category_path"] = list(
+                map(
+                    lambda x: json.dumps(x),
+                    df["process_documentation_publication_category_path"],
+                )
             )
         if "processDocumentation.dataDocumentor.@type" in df.columns:
             df.drop(
@@ -285,7 +407,9 @@ if os.path.exists(processes):
         if "processDocumentation.reviewer.@type" in df.columns:
             df.drop(["processDocumentation.reviewer.@type"], axis=1, inplace=True)
         if "processDocumentation.publication.@type" in df.columns:
-            df.drop(["processDocumentation.publication.@type"], axis=1, inplace=True)
+            df.drop(
+                ["processDocumentation.publication.@type"], axis=1, inplace=True
+            )
         if "exchangeDqSystem.@type" in df.columns:
             df.drop(["exchangeDqSystem.@type"], axis=1, inplace=True)
         if "dqSystem.@type" in df.columns:
@@ -296,10 +420,16 @@ if os.path.exists(processes):
             if_exists="append",
             index=None,
             dtype={
+                "category_path": sqlalchemy.types.JSON,
                 "parameters": sqlalchemy.types.JSON,
                 "exchanges": sqlalchemy.types.JSON,
-                "allocationFactors": sqlalchemy.types.JSON,
-                "processDocumentationSources": sqlalchemy.types.JSON,
+                "allocation_factors": sqlalchemy.types.JSON,
+                "process_documentation_sources": sqlalchemy.types.JSON,
+                "process_documentation_data_generator_category_path": sqlalchemy.types.JSON,
+                "process_documentation_data_set_owner_category_path": sqlalchemy.types.JSON,
+                "process_documentation_reviewer_category_path": sqlalchemy.types.JSON,
+                "process_documentation_data_documentor_category_path": sqlalchemy.types.JSON,
+                "process_documentation_publication_category_path": sqlalchemy.types.JSON,
             },
         )
 
@@ -311,7 +441,17 @@ if os.path.exists(sources):
     df.drop(["@context", "@type"], axis=1, inplace=True)
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
-    df.to_sql(datasource + "__sources", con=db_conn, if_exists="append", index=None)
+    if "category_path" in df.columns:
+        df["category_path"] = list(
+            map(lambda x: json.dumps(x), df["category_path"],)
+        )
+    df.to_sql(
+        datasource + "__sources",
+        con=db_conn,
+        if_exists="append",
+        index=None,
+        dtype={"category_path": sqlalchemy.types.JSON,},
+    )
 
 unit_groups = "OpenLCA/data/" + datasource + "/unit_groups"
 if os.path.exists(unit_groups):
@@ -324,12 +464,24 @@ if os.path.exists(unit_groups):
         df.drop(["category.@type"], axis=1, inplace=True)
     if "defaultFlowProperty.@type" in df.columns:
         df.drop(["defaultFlowProperty.@type"], axis=1, inplace=True)
+    if "category_path" in df.columns:
+        df["category_path"] = list(
+            map(lambda x: json.dumps(x), df["category_path"],)
+        )
+    if "default_flow_property_category_path" in df.columns:
+        df["default_flow_property_category_path"] = list(
+            map(lambda x: json.dumps(x), df["default_flow_property_category_path"],)
+        )
     df.to_sql(
         datasource + "__unit_groups",
         con=db_conn,
         if_exists="append",
         index=None,
-        dtype={"units": sqlalchemy.types.JSON},
+        dtype={
+            "units": sqlalchemy.types.JSON,
+            "category_path": sqlalchemy.types.JSON,
+            "default_flow_property_category_path": sqlalchemy.types.JSON,
+        },
     )
 
 lcia_categories = "OpenLCA/data/" + datasource + "/lcia_categories"
@@ -340,9 +492,9 @@ if os.path.exists(lcia_categories):
     for g in filegroup:
         df = mergeJson_list(g)
         df = columnRename(df)
-        if "impactFactors" in df.columns:
-            df["impactFactors"] = list(
-                map(lambda x: json.dumps(x), df["impactFactors"])
+        if "impact_factors" in df.columns:
+            df["impact_factors"] = list(
+                map(lambda x: json.dumps(x), df["impact_factors"])
             )
         df.drop(["@context", "@type"], axis=1, inplace=True)
         df.to_sql(
@@ -350,7 +502,7 @@ if os.path.exists(lcia_categories):
             con=db_conn,
             if_exists="append",
             index=None,
-            dtype={"impactFactors": sqlalchemy.types.JSON},
+            dtype={"impact_factors": sqlalchemy.types.JSON},
         )
 
 lcia_methods = "OpenLCA/data/" + datasource + "/lcia_methods"
@@ -358,12 +510,12 @@ if os.path.exists(lcia_methods):
     print(datasource + " lcia_methods")
     df = mergeJson(lcia_methods)
     df = columnRename(df)
-    if "impactCategories" in df.columns:
-        df["impactCategories"] = list(
-            map(lambda x: json.dumps(x), df["impactCategories"])
+    if "impact_categories" in df.columns:
+        df["impact_categories"] = list(
+            map(lambda x: json.dumps(x), df["impact_categories"])
         )
-    if "nwSets" in df.columns:
-        df["nwSets"] = list(map(lambda x: json.dumps(x), df["nwSets"]))
+    if "nw_sets" in df.columns:
+        df["nw_sets"] = list(map(lambda x: json.dumps(x), df["nw_sets"]))
     df.drop(["@context", "@type"], axis=1, inplace=True)
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
@@ -373,8 +525,8 @@ if os.path.exists(lcia_methods):
         if_exists="append",
         index=None,
         dtype={
-            "impactFactors": sqlalchemy.types.JSON,
-            "nwSets": sqlalchemy.types.JSON,
+            "impact_categories": sqlalchemy.types.JSON,
+            "nw_sets": sqlalchemy.types.JSON,
         },
     )
 
@@ -395,13 +547,14 @@ if os.path.exists(nw_sets):
     )
 
 parameters = "OpenLCA/data/" + datasource + "/parameters"
-print(datasource + " parameters")
 if os.path.exists(parameters):
     print(datasource + " parameters")
     df = mergeJson(parameters)
     df = columnRename(df)
     df.drop(["@context", "@type"], axis=1, inplace=True)
-    df.to_sql(datasource + "__parameters", con=db_conn, if_exists="append", index=None)
+    df.to_sql(
+        datasource + "__parameters", con=db_conn, if_exists="append", index=None
+    )
 
 bin = "OpenLCA/data/" + datasource + "/bin/sources"
 if os.path.exists(bin):
@@ -413,7 +566,7 @@ if os.path.exists(bin):
                 for f2 in fs2:
                     with open(os.path.join(root2, f2), "rb") as bfile:
                         df = pd.DataFrame(
-                            [[d1, bfile.read()]], columns=["id", "binSources"]
+                            [[d1, bfile.read()]], columns=["id", "bin_sources"]
                         )
                         df.to_sql(
                             datasource + "__bin_sources",
