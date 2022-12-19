@@ -133,3 +133,4 @@ USLCI/data/*
 OpenLCA/data/*
 ecocosts_idemat/data/*
 .vscode/launch.json
+ecoinvent/data/*

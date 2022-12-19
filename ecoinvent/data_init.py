@@ -143,7 +143,7 @@ def columnRename(base):
 
 
 db_conn = create_engine(
-    "postgresql+psycopg2://postgres:1234qwer@localhost:5432/TianGongData",
+    "postgresql+psycopg2://postgres:1234qwer@localhost:5432/crystalcaData",
     encoding="utf8",
     pool_pre_ping=True,
 )
@@ -165,7 +165,7 @@ openlca_data = os.listdir("OpenLCA/data")
 # 11: usda
 # 12: uslci
 # 13: worldsteel
-datasource = openlca_data[0]
+datasource = openlca_data[13]
 
 actors = "OpenLCA/data/" + datasource + "/actors"
 if os.path.exists(actors):
@@ -176,7 +176,9 @@ if os.path.exists(actors):
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
     if "category_path" in df.columns:
-        df["category_path"] = list(df["category_path"])
+        df["category_path"] = list(
+            map(lambda x: json.dumps(x), df["category_path"])
+        )
     df.to_sql(
         datasource + "__actors",
         con=db_conn,
@@ -194,7 +196,9 @@ if os.path.exists(categories):
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
     if "category_path" in df.columns:
-        df["category_path"] = list(df["category_path"])
+        df["category_path"] = list(
+            map(lambda x: json.dumps(x), df["category_path"])
+        )
     df.to_sql(
         datasource + "__categories",
         con=db_conn,
@@ -227,7 +231,7 @@ if os.path.exists(dq_systems):
         df.drop(["category.@type"], axis=1, inplace=True)
     if "source.@type" in df.columns:
         df.drop(["source.@type"], axis=1, inplace=True)
-    df["indicators"] = list(df["indicators"])
+    df["indicators"] = list(map(lambda x: json.dumps(x), df["indicators"]))
     df.to_sql(
         datasource + "__dq_systems",
         con=db_conn,
@@ -247,9 +251,13 @@ if os.path.exists(flow_properties):
     if "unitGroup.@type" in df.columns:
         df.drop(["unitGroup.@type"], axis=1, inplace=True)
     if "category_path" in df.columns:
-        df["category_path"] = list(df["category_path"])
+        df["category_path"] = list(
+            map(lambda x: json.dumps(x), df["category_path"])
+        )
     if "unit_group_category_path" in df.columns:
-        df["unit_group_category_path"] = list(df["unit_group_category_path"])
+        df["unit_group_category_path"] = list(
+            map(lambda x: json.dumps(x), df["unit_group_category_path"])
+        )
     df.to_sql(
         datasource + "__flow_properties",
         con=db_conn,
@@ -275,9 +283,13 @@ if os.path.exists(flows):
         if "location.@type" in df.columns:
             df.drop(["location.@type"], axis=1, inplace=True)
         if "category_path" in df.columns:
-            df["category_path"] = list(df["category_path"])
+            df["category_path"] = list(
+                map(lambda x: json.dumps(x), df["category_path"])
+            )
         if "flow_properties" in df.columns:
-            df["flow_properties"] = list(df["flow_properties"])
+            df["flow_properties"] = list(
+                map(lambda x: json.dumps(x), df["flow_properties"])
+            )
         df.to_sql(
             datasource + "__flows",
             con=db_conn,
@@ -296,9 +308,13 @@ if os.path.exists(locations):
     df = columnRename(df)
     df.drop(["@context", "@type"], axis=1, inplace=True)
     if "geometry_geometries" in df.columns:
-        df["geometry_geometries"] = list(df["geometry_geometries"])
+        df["geometry_geometries"] = list(
+            map(lambda x: json.dumps(x), df["geometry_geometries"])
+        )
     if "geometry_coordinates" in df.columns:
-        df["geometry_coordinates"] = list(df["geometry_coordinates"])
+        df["geometry_coordinates"] = list(
+            map(lambda x: json.dumps(x), df["geometry_coordinates"])
+        )
     df.to_sql(
         datasource + "__locations",
         con=db_conn,
@@ -326,16 +342,21 @@ if os.path.exists(processes):
         if "location.@type" in df.columns:
             df.drop(["location.@type"], axis=1, inplace=True)
         if "exchanges" in df.columns:
-            df["exchanges"] = list(df["exchanges"])
+            df["exchanges"] = list(map(lambda x: json.dumps(x), df["exchanges"]))
         if "allocation_factors" in df.columns:
-            df["allocation_factors"] = list(df["allocation_factors"])
+            df["allocation_factors"] = list(
+                map(lambda x: json.dumps(x), df["allocation_factors"])
+            )
         if "category_path" in df.columns:
-            df["category_path"] = list(df["category_path"])
+            df["category_path"] = list(
+                map(lambda x: json.dumps(x), df["category_path"])
+            )
         if "parameters" in df.columns:
-            df["parameters"] = list(df["parameters"])
+            df["parameters"] = list(map(lambda x: json.dumps(x), df["parameters"]))
         if "process_documentation_sources" in df.columns:
             df["process_documentation_sources"] = list(
-                df["process_documentation_sources"])
+                map(lambda x: json.dumps(x), df["process_documentation_sources"])
+            )
         if "process_documentation_data_generator_category_path" in df.columns:
             df["process_documentation_data_generator_category_path"] = list(
                 map(
@@ -421,7 +442,9 @@ if os.path.exists(sources):
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
     if "category_path" in df.columns:
-        df["category_path"] = list(df["category_path"])
+        df["category_path"] = list(
+            map(lambda x: json.dumps(x), df["category_path"],)
+        )
     df.to_sql(
         datasource + "__sources",
         con=db_conn,
@@ -435,16 +458,20 @@ if os.path.exists(unit_groups):
     print(datasource + " unit_groups")
     df = mergeJson(unit_groups)
     df = columnRename(df)
-    df["units"] = list(df["units"])
+    df["units"] = list(map(lambda x: json.dumps(x), df["units"]))
     df.drop(["@context", "@type"], axis=1, inplace=True)
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
     if "defaultFlowProperty.@type" in df.columns:
         df.drop(["defaultFlowProperty.@type"], axis=1, inplace=True)
     if "category_path" in df.columns:
-        df["category_path"] = list(df["category_path"])
+        df["category_path"] = list(
+            map(lambda x: json.dumps(x), df["category_path"],)
+        )
     if "default_flow_property_category_path" in df.columns:
-        df["default_flow_property_category_path"] = list(df["default_flow_property_category_path"])
+        df["default_flow_property_category_path"] = list(
+            map(lambda x: json.dumps(x), df["default_flow_property_category_path"],)
+        )
     df.to_sql(
         datasource + "__unit_groups",
         con=db_conn,
@@ -466,7 +493,9 @@ if os.path.exists(lcia_categories):
         df = mergeJson_list(g)
         df = columnRename(df)
         if "impact_factors" in df.columns:
-            df["impact_factors"] = list(df["impact_factors"])
+            df["impact_factors"] = list(
+                map(lambda x: json.dumps(x), df["impact_factors"])
+            )
         df.drop(["@context", "@type"], axis=1, inplace=True)
         df.to_sql(
             datasource + "__lcia_categories",
@@ -482,9 +511,11 @@ if os.path.exists(lcia_methods):
     df = mergeJson(lcia_methods)
     df = columnRename(df)
     if "impact_categories" in df.columns:
-        df["impact_categories"] = list(df["impact_categories"])
+        df["impact_categories"] = list(
+            map(lambda x: json.dumps(x), df["impact_categories"])
+        )
     if "nw_sets" in df.columns:
-        df["nw_sets"] = list(df["nw_sets"])
+        df["nw_sets"] = list(map(lambda x: json.dumps(x), df["nw_sets"]))
     df.drop(["@context", "@type"], axis=1, inplace=True)
     if "category.@type" in df.columns:
         df.drop(["category.@type"], axis=1, inplace=True)
@@ -505,7 +536,7 @@ if os.path.exists(nw_sets):
     df = mergeJson(nw_sets)
     df = columnRename(df)
     if "factors" in df.columns:
-        df["factors"] = list(df["factors"])
+        df["factors"] = list(map(lambda x: json.dumps(x), df["factors"]))
     df.drop(["@context", "@type"], axis=1, inplace=True)
     df.to_sql(
         datasource + "__nw_sets",
